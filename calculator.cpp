@@ -4,14 +4,14 @@
 LRESULT CALLBACK WndProc(HWND,UINT , WPARAM ,LPARAM);
 char Text1[20];
 char Text2[20];
-HWND Text_Field,Button,Text_Box1,Text_Box2;
+HWND TextField,Button,TextBox1,TextBox2;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
 	switch(Message) {
 			case WM_CREATE: 
-				Text_Field = CreateWindow("STATIC","   Please input two numbers",WS_VISIBLE|WS_CHILD|WS_BORDER,20,20,200,25,hwnd,NULL,NULL,NULL);
-				Text_Box1 = CreateWindow("EDIT"," ",WS_BORDER|WS_CHILD|WS_VISIBLE,50,50,150,25,hwnd,NULL,NULL,NULL);
-				Text_Box2 = CreateWindow("EDIT"," ",WS_BORDER|WS_CHILD|WS_VISIBLE,50,80,150,25,hwnd,NULL,NULL,NULL);
+				TextField = CreateWindow("STATIC","   Please input two numbers",WS_VISIBLE|WS_CHILD|WS_BORDER,20,20,200,25,hwnd,NULL,NULL,NULL);
+				TextBox1 = CreateWindow("EDIT"," ",WS_BORDER|WS_CHILD|WS_VISIBLE,50,50,150,25,hwnd,NULL,NULL,NULL);
+				TextBox2 = CreateWindow("EDIT"," ",WS_BORDER|WS_CHILD|WS_VISIBLE,50,80,150,25,hwnd,NULL,NULL,NULL);
 				Button = CreateWindow("BUTTON","+",WS_VISIBLE|WS_CHILD|WS_BORDER,64,120,28,25,hwnd,(HMENU) 1,NULL,NULL);
 				Button = CreateWindow("BUTTON","-",WS_VISIBLE|WS_CHILD|WS_BORDER,94,120,28,25,hwnd,(HMENU) 2,NULL,NULL);
 				Button = CreateWindow("BUTTON","*",WS_VISIBLE|WS_CHILD|WS_BORDER,124,120,28,25,hwnd,(HMENU) 3,NULL,NULL);
@@ -20,8 +20,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
 			case WM_COMMAND: 
 				if(LOWORD(wParam)!=0){
 					int gwtstat1 =0,gwtstat2 =0;
-					gwtstat1 = GetWindowText(Text_Box1,&Text1[0],20);
-					gwtstat2 = GetWindowText(Text_Box2,&Text2[0],20);
+					gwtstat1 = GetWindowText(TextBox1,&Text1[0],20);
+					gwtstat2 = GetWindowText(TextBox2,&Text2[0],20);
 				}
 				if(LOWORD(wParam)==1){
 					float re=atof(Text1)+atof(Text2);
@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wc.hInstance	 = hInstance;
 	wc.hCursor	 = LoadCursor(NULL, IDC_ARROW);
 	
-	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW-2); 
+	wc.hbrBackground = (HBRUSH)(COLOR_3DHIGHLIGHT + 10); 
 	wc.lpszClassName = "WindowClass";
 	wc.hIcon	 = LoadIcon(NULL, IDI_APPLICATION); 
 	wc.hIconSm	 = LoadIcon(NULL, IDI_APPLICATION); 
